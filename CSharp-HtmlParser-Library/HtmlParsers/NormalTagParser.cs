@@ -10,10 +10,10 @@ namespace CSharp_HtmlParser_Library.HtmlParsers
 
         private HtmlAttribute _currentAttribute;
         private char _quoteMarkCharacter;
-        private TextFormatter _source;
+        private readonly TextFormatter _source;
         private readonly Regex _selfClosingHtmlTags = new Regex(@"\b(area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\b");
 
-        private IList<string> tagToIgnoreNames = new List<string>()
+        private readonly IList<string> _tagToIgnoreNames = new List<string>()
         {
             "script"
         };
@@ -25,14 +25,17 @@ namespace CSharp_HtmlParser_Library.HtmlParsers
 
         public bool CanParse()
         {
-            foreach (var name in tagToIgnoreNames)
+            foreach (var name in _tagToIgnoreNames)
             {
                 try
                 {
                     if (_source.Text.Substring(_source.Position + 1, name.Length).ToLower() == name.ToLower())
                         return false;
                 }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
             }
 
             try

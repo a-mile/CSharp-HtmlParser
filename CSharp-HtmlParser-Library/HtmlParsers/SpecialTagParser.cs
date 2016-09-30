@@ -7,9 +7,9 @@ namespace CSharp_HtmlParser_Library.HtmlParsers
         
         public HtmlDocumentNode ParsedNode {get;set;}
 
-        private TextFormatter _source;
-        private SpecialTagParserConfiguration _configuration;
-        private string _name; 
+        private readonly TextFormatter _source;
+        private readonly SpecialTagParserConfiguration _configuration;
+        private readonly string _name; 
 
         public SpecialTagParser(string name, TextFormatter source, SpecialTagParserConfiguration configuration)
         {
@@ -53,7 +53,8 @@ namespace CSharp_HtmlParser_Library.HtmlParsers
 
         public void AddAndSkipTagContent()
         {
-            ParsedNode.OuterHtml += _source.GetTextFromCurrentPositionToAnyStopString(_configuration.TagCloser);
+            ParsedNode.OwnText += _source.GetTextFromCurrentPositionToAnyStopString(_configuration.TagCloser);
+            ParsedNode.OuterHtml += ParsedNode.OwnText;
         }
     }
 

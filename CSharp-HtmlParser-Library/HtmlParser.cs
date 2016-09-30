@@ -66,7 +66,7 @@ namespace CSharp_HtmlParser_Library
             _normalTagParser = new NormalTagParser(_textFormatter);
             _specialTagParsers = new List<SpecialTagParser>()
             {
-                new SpecialTagParser("#doctype", _textFormatter, new SpecialTagParserConfiguration("<!doctype",">",false)),
+                new SpecialTagParser("#doctype", _textFormatter, new SpecialTagParserConfiguration("<!doctype ",">",false)),
                 new SpecialTagParser("#conditional", _textFormatter, new SpecialTagParserConfiguration("<![if","<![endif]>",false)),
                 new SpecialTagParser("#conditionalcomment", _textFormatter, new SpecialTagParserConfiguration("<!--[if","<![endif]-->",false)),
                 new SpecialTagParser("#comment", _textFormatter, new SpecialTagParserConfiguration("<!--","-->",false)),
@@ -99,7 +99,7 @@ namespace CSharp_HtmlParser_Library
                     ParseAsText();                                        
                 }
 
-                _textFormatter.SkipWhiteSpaces();
+                //_textFormatter.SkipWhiteSpaces();
             }
         }
 
