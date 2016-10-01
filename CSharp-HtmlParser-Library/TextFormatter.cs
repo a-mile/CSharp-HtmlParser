@@ -95,7 +95,7 @@ namespace CSharp_HtmlParser_Library
             try
             {
                 string currentText = Text.Substring(Position, textToCheck.Length);
-                currentText = Regex.Replace(currentText, @"\t|\n|\r", " ");
+                //currentText = Regex.Replace(currentText, @"\t|\n|\r", " ");
                 if(caseSensitive)
                 {
                     return currentText == textToCheck;
